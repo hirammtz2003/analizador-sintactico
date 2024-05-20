@@ -8,7 +8,7 @@ void yyerror(const char *s);
 True                return BOOLEANO;
 False               return BOOLEANO;
 [a-zA-Z][a-zA-Z0-9_]* return IDENTIFICADOR;
-\"[^\"\n]*      { yyerror("Cadena literal incompleta: falta comilla final"); return -1; }
+\"[^\"\n]*      { yyerror("syntax error"); return -1; }
 \"[^\n]*\"      return CADENA_LITERAL;
 [0-9]+             return ENTERO;
 [0-9]*\.[0-9]+     return FLOTANTE;

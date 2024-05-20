@@ -1,0 +1,7 @@
+var1 = 30 + 20.2  * (a / b);
+var2 = 45.3;
+var4 = 23 * 3 - 23 + 9;
+cadena = "Hola";
+flag1 = True;
+flag2 = False;
+a 10

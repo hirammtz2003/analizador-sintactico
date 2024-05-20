@@ -762,7 +762,7 @@ return IDENTIFICADOR;
 case 4:
 YY_RULE_SETUP
 #line 11 "reglas.l"
-{ yyerror("Cadena literal incompleta: falta comilla final"); return -1; }
+{ yyerror("syntax error"); return -1; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP

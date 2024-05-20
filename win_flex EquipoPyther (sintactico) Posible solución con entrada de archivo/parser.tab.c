@@ -71,10 +71,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 void yyerror(const char *s);
 int yylex(void);
+extern FILE *yyin; // Declara yyin para poder cambiar la entrada de yyparse
 
-#line 78 "parser.tab.c"
+#line 80 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -513,8 +515,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    17,    17,    17,    19,    22,    23,    24,    27,    28,
-      29,    32,    33,    34,    35,    38,    39,    40,    41
+       0,    19,    19,    19,    21,    24,    25,    26,    29,    30,
+      31,    34,    35,    36,    37,    40,    41,    42,    43
 };
 #endif
 
@@ -1088,13 +1090,13 @@ yyreduce:
   switch (yyn)
     {
   case 4: /* A: IDENTIFICADOR ASIGNACION VALOR PUNTO_Y_COMA  */
-#line 19 "parser.y"
+#line 21 "parser.y"
                                                { printf("Asignacion valida\n"); }
-#line 1094 "parser.tab.c"
+#line 1096 "parser.tab.c"
     break;
 
 
-#line 1098 "parser.tab.c"
+#line 1100 "parser.tab.c"
 
       default: break;
     }
@@ -1287,13 +1289,21 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 44 "parser.y"
+#line 46 "parser.y"
 
 
 void yyerror(const char *s) {
     fprintf(stderr, "Error: %s\n", s);
+    exit(1); // Finaliza la ejecución en caso de error
 }
 
-int main() {
+int main(int argc, char **argv) {
+    if (argc > 1) {
+        yyin = fopen(argv[1], "r");
+        if (!yyin) {
+            perror(argv[1]);
+            return 1;
+        }
+    }
     return yyparse();
 }
